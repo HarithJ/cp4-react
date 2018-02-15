@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 class LoginPage extends React.Component {
-    submit = data =>
-        this.props.login(data).then(() => this.props.history.push('dashboard'));
+    submit = data => {
+        return this.props.login(data).then(() => this.props.history.push('dashboard'));
+    };
     render() {
         return(
             <div>

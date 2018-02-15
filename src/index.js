@@ -16,13 +16,13 @@ rootReducer,
   composeWithDevTools(applyMiddleware(thunk)),
 );
 
-if (localStorage.bookwormJWT) {
-  const user = { 'Access token': localStorage.bookwormJWT };
+if (localStorage.recipesJWT) {
+  const user = { 'Access token': localStorage.recipesJWT };
   store.dispatch(userLoggedIn(user));
 }
 
 ReactDOM.render(<BrowserRouter>
-  <Provider store={store}>
+                  <Provider store={store}>
                     <Route component={App} />
                   </Provider>
 </BrowserRouter>, document.getElementById('root'));
