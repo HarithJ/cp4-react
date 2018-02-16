@@ -4,7 +4,6 @@ import React from 'react';
 class CategoryCard extends React.Component {
     render() {
         const { category } = this.props;
-        console.log(category)
         return (
     <div className="ui card">
         <div className="content">
@@ -24,4 +23,7 @@ class CategoryCard extends React.Component {
 
 }
 
+CategoryCard.propTypes = {
+    category: PropTypes.object.isRequired
+}
 export default CategoryCard;

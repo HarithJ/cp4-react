@@ -14,7 +14,8 @@ export const userLoggedOut = () => ({
     dispatch(userLoggedIn(user));
   },);
   
-  export const logout = () => (dispatch) => {
+  export const logout = token => (dispatch) => {
+    api.user.logout(token);
     localStorage.removeItem('recipesJWT');
     dispatch(userLoggedOut());
   };

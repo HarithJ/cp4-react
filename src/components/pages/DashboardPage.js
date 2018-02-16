@@ -2,24 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUserCategories } from '../../actions/categories';
-import CategoryCards from '../../components/cards/categoryCard'
+import CategoryCards from '../../components/cards/categoryCard';
+import { Loader, Dimmer } from 'semantic-ui-react';
 
 class DashboardPage extends React.Component{
+    state = {
+        loading: false,
+    }
     getCategories = (token) => 
         this.props.getUserCategories(token);
 
     componentDidMount() {
+        this.setState({ loading: true,})
         const token = localStorage.getItem('recipesJWT');
         this.getCategories(token);
+        this.setState({ loading: false,})
     };
     render () {
         const { categories } = this.props;
+        const { loading } = this.state;
         return(
             <div className="ui link centered cards"> 
-            {!!categories && categories[1].map((category) => 
+                    { loading && <Dimmer active inverted>
+                        <Loader size='large'>Loading</Loader>
+                    </Dimmer>}
+                {!!categories && categories[1].map((category) => 
                 (
                 < CategoryCards category={category} key={category['id']}/>
-            )) }
+                )) }
             </div>
         );
     }
