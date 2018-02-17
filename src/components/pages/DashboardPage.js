@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getUserCategories } from '../../actions/categories';
 import CategoryCards from '../../components/cards/categoryCard';
 import { Loader, Dimmer } from 'semantic-ui-react';
+import CategoryModal from '../modals/CreateCategory';
 
 class DashboardPage extends React.Component{
     state = {
@@ -22,7 +23,10 @@ class DashboardPage extends React.Component{
         const { categories } = this.props;
         const { loading } = this.state;
         return(
-            <div className="ui link centered cards"> 
+            <div>
+                <div><CategoryModal/></div>
+
+            <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
                         <Loader size='large'>Loading</Loader>
                     </Dimmer>}
@@ -30,6 +34,7 @@ class DashboardPage extends React.Component{
                 (
                 < CategoryCards category={category} key={category['id']}/>
                 )) }
+            </div>
             </div>
         );
     }

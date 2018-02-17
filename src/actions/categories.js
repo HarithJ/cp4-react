@@ -6,6 +6,7 @@ export const allUserCategories = categories => ({
     type: GET_USER_CATEGORIES,
     categories
 })
+
 export const getUserCategories = token => dispatch => api.user.getCategories(token).then((categories) => {
         dispatch(allUserCategories(categories));
     },).catch((errors) => {
@@ -14,3 +15,13 @@ export const getUserCategories = token => dispatch => api.user.getCategories(tok
             dispatch(userLoggedOut())
         }
       });
+
+export const postCategory = data => dispatch => api.user.postCategory(localStorage.getItem('recipesJWT'),data).then(() => 
+    api.user.getCategories(localStorage.getItem('recipesJWT')).then((categories) => {
+        dispatch(allUserCategories(categories));
+    },).catch((errors) => {
+    if(errors.response.status  === 498 || errors.response.status  === 499) {
+        localStorage.removeItem('recipesJWT');
+        dispatch(userLoggedOut())
+    }
+    }));

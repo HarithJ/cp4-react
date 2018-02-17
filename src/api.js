@@ -14,6 +14,13 @@ export default {
       url: ('http://127.0.0.1:5000/v2/categories'), 
       headers: {Authorization: token}
   }).then(res => res.data
-  )
-  }
+  ),
+  postCategory: (token, data) =>
+    axios({
+    method: 'post',
+    url: ('http://127.0.0.1:5000/v2/categories'),
+    data, 
+    headers: {Authorization: token}
+}).then(res => res.data)
+}
 }

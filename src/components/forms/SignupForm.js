@@ -117,7 +117,7 @@ class SignupForm extends React.Component{
                     />
                     {errors['Last Name'] && <InlineError text={errors['Last Name']} />}
             </Form.Field>
-            <Button primary>Sign Up</Button>
+            <Button secondary>Sign Up</Button>
             </Form>
         );
     }
