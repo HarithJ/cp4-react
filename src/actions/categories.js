@@ -25,3 +25,8 @@ export const deleteCategory = id => dispatch => api.user.deleteCategory(localSto
 api.user.getCategories(localStorage.getItem('recipesJWT')).then((categories) => {
     dispatch(allUserCategories(categories));
 },));
+
+export const putCategory = (data, id) => dispatch => api.user.putCategory(localStorage.getItem('recipesJWT'),data, id).then(() => 
+api.user.getCategories(localStorage.getItem('recipesJWT')).then((categories) => {
+    dispatch(allUserCategories(categories));
+},));

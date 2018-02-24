@@ -8,7 +8,7 @@ class CategoryCard extends React.Component {
         return (
     <div className="ui card">
         <div className="extra header" style={{marginLeft: "70%" }}>
-            <CategorySubMenu id={category['id']}/> 
+            <CategorySubMenu id={category['id']} category={category}/> 
         </div>
         <div className="content">
             <div className="header">{category['Recipe Category Name']}</div>
