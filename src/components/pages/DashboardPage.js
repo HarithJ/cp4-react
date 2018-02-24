@@ -30,7 +30,7 @@ class DashboardPage extends React.Component{
                     { loading && <Dimmer active inverted>
                         <Loader size='large'>Loading</Loader>
                     </Dimmer>}
-                {!!categories && categories[1].map((category) => 
+                {!!categories && !categories[1]['message'] && categories[1].map((category) => 
                 (
                 < CategoryCards category={category} key={category['id']}/>
                 )) }

@@ -19,9 +19,9 @@ export const getUserCategories = token => dispatch => api.user.getCategories(tok
 export const postCategory = data => dispatch => api.user.postCategory(localStorage.getItem('recipesJWT'),data).then(() => 
     api.user.getCategories(localStorage.getItem('recipesJWT')).then((categories) => {
         dispatch(allUserCategories(categories));
-    },).catch((errors) => {
-    if(errors.response.status  === 498 || errors.response.status  === 499) {
-        localStorage.removeItem('recipesJWT');
-        dispatch(userLoggedOut())
-    }
-    }));
+    },));
+
+export const deleteCategory = id => dispatch => api.user.deleteCategory(localStorage.getItem('recipesJWT'),id).then(() => 
+api.user.getCategories(localStorage.getItem('recipesJWT')).then((categories) => {
+    dispatch(allUserCategories(categories));
+},));
