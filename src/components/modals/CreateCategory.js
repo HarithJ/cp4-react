@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { postCategory } from '../../actions/categories';
 import InlineError  from '../messages/InlineError';
 import { connect } from 'react-redux';
+import { logout } from '../../actions/auth';
+
 
 
 class CategoryModal extends Component {
@@ -26,8 +28,14 @@ class CategoryModal extends Component {
         if (Object.keys(errors).length === 0) {
             this.setState({loading: true});
              this.postCategory(this.state.data)
-             .then(() => {this.setState({loading: false}); this.close()})
-             .catch( errors => this.setState({ errors: errors.response.data, loading: false }))
+             .then(() => {this.setState({loading: false}); this.close()})                
+             .catch((errors) => {
+                if(errors.response.status  === 498 || errors.response.status  === 499) {
+                    this.props.logout(localStorage.getItem('recipesJWT'))
+                }else{
+                    this.setState({ errors: errors.response.data, loading: false }
+                )}
+            })
         }
     };
     validate = data => {
@@ -48,7 +56,7 @@ class CategoryModal extends Component {
     }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
-  close = () => this.setState({ open: false })
+  close = () => this.setState({ errors: {}, open: false })
 
   render() {
     const { open, dimmer, data, errors, loading } = this.state;
@@ -120,4 +128,4 @@ CategoryModal.propTypes = {
 };
 
 
-export default connect(null, { postCategory })(CategoryModal);
+export default connect(null, { postCategory, logout })(CategoryModal);
