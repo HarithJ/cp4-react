@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 
 const App = ({ location }) => (
-      <div className="ui container">
+      <div>
         <Route location={ location }path="/" exact component={HomePage} />
         <GuestRoute location={ location } path='/login' exact component={LoginPage} />
         <GuestRoute location={ location } path='/signup' exact component={SignupPage} />

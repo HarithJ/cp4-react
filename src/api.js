@@ -21,6 +21,24 @@ export default {
     url: ('http://127.0.0.1:5000/v2/categories'),
     data, 
     headers: {Authorization: token}
-}).then(res => res.data)
+}).then(res => res.data),
+
+  deleteCategory: (token, id) =>
+  axios({
+  method: 'delete',
+  url: ( `http://127.0.0.1:5000/v2/categories/${id}`),
+  headers: {Authorization: token}
+  }).then(res => res.data),
+  
+  putCategory: (token, data, id) =>
+    axios({
+    method: 'put',
+    url: (`http://127.0.0.1:5000/v2/categories/${id}`),
+    data, 
+    headers: {Authorization: token}
+}).then(res => res.data),
+
+  }
 }
-}
+
+

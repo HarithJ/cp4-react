@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-import { Popup, Button, Modal, Form, TextArea, Icon, Message } from 'semantic-ui-react';
+import {Button, Modal, Form, TextArea, Icon, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { postCategory } from '../../actions/categories';
+import { putCategory } from '../../actions/categories';
 import InlineError  from '../messages/InlineError';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 
 
 
-class CategoryModal extends Component {
-  state = { 
-    open: false,
-    loading: false,
-    errors: {},
-    data: {
-        name: '',
-        detail: ''
-    } 
-}
-    postCategory = data => {
-        return this.props.postCategory(data);
+class CategoryEditModal extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        loading: false,
+        errors: {},
+        id: props.id, 
+        data: {
+            name: props.category['Recipe Category Name'] || '',
+            detail: props.category['Recipe Category Detail'] || '',
+        } 
+        };
+      }
+
+    putCategory = (data, id) => {
+        return this.props.putCategory(data, id);
     };
     onSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +31,7 @@ class CategoryModal extends Component {
         this.setState({errors});
         if (Object.keys(errors).length === 0) {
             this.setState({loading: true});
-             this.postCategory(this.state.data)
+             this.putCategory(this.state.data, this.props.id)
              .then(() => {this.setState({loading: false}); this.close()})                
              .catch((errors) => {
                 if(errors.response.status  === 498 || errors.response.status  === 499) {
@@ -55,23 +59,20 @@ class CategoryModal extends Component {
         });
     }
 
-  show = dimmer => () => this.setState({ dimmer, open: true })
-  close = () => this.setState({ errors: {}, open: false })
+  close = () => {
+      this.props.close()
+      this.setState({ errors: {} })
+  }
 
   render() {
-    const { open, dimmer, data, errors, loading } = this.state;
+    const {data, errors, loading } = this.state;
+    const { dimmer, open } = this.props;
 
     return (
       <div>
-        <Popup trigger={<Button onClick={this.show('blurring')}>Add</Button>}>
-          <Popup.Header>Heads up!</Popup.Header>
-          <Popup.Content>
-            Create a new food category here!
-          </Popup.Content>
-        </Popup>
 
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>Create a new category</Modal.Header>
+        <Modal dimmer={dimmer} open={open} onClose={ this.close }>
+          <Modal.Header>Edit category</Modal.Header>
           <Modal.Content>
           <Form>
           { errors.message && <Message negative>
@@ -84,7 +85,6 @@ class CategoryModal extends Component {
                            id='Category Name' 
                            name='name' 
                            value={ data['name'] }
-                           placeholder='Pastries'
                            onChange= {this.onChange}
 
                     />
@@ -95,11 +95,7 @@ class CategoryModal extends Component {
                     <label htmlFor='description'>Description</label>
                     <TextArea autoHeight type='textarea'
                            id='description' 
-                           name='detail' 
-                           placeholder="Pastry is a dough of flour, water and shortening 
-                           that may be savoury or sweetened. 
-                           Sweetened pastries are often 
-                           described as bakers' confectionery."
+                           name='detail'
                            onChange= {this.onChange}
                            value={ data['detail'] }
 
@@ -110,9 +106,9 @@ class CategoryModal extends Component {
                 </Form>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={this.onSubmit} loading={loading}>
-              <Icon name='heart' />
-              Create
+            <Button color='green' onClick={this.onSubmit} loading={loading}>
+              <Icon name='edit' />
+              Edit
             </Button>
           </Modal.Actions>
         </Modal>
@@ -121,12 +117,13 @@ class CategoryModal extends Component {
   }
 }
 
-CategoryModal.propTypes = {
-    postCategory: PropTypes.func.isRequired,
+CategoryEditModal.propTypes = {
+    putCategory: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
     logout: PropTypes.func.isRequired
 
 
 };
 
 
-export default connect(null, { postCategory, logout })(CategoryModal);
+export default connect(null, { putCategory, logout })(CategoryEditModal);
