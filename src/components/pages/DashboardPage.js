@@ -19,6 +19,9 @@ class DashboardPage extends React.Component{
         this.getCategories(token);
         this.setState({ loading: false,})
     };
+
+    redirectRecipes = (id) => this.props.history.push(`category/${id}/recipes`)
+
     render () {
         const { categories } = this.props;
         const { loading } = this.state;
@@ -32,7 +35,7 @@ class DashboardPage extends React.Component{
                     </Dimmer>}
                 {!!categories && !categories[1]['message'] && categories[1].map((category) => 
                 (
-                < CategoryCards category={category} key={category['id']}/>
+                < CategoryCards redirectRecipes={ this.redirectRecipes } category={category} key={category['id']}/>
                 )) }
             </div>
             </div>
@@ -41,6 +44,9 @@ class DashboardPage extends React.Component{
 }
 DashboardPage.propTypes = {
     getUserCategories: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }),
 }
 
 function mapStateToProps(state) {
