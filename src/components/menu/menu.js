@@ -34,7 +34,7 @@ class CategorySubMenu extends Component {
             <CategoryEditModal dimmer={this.state.dimmer} close={this.close} open= {this.state.open} category={category} id={id}/> 
             <Icon name='edit' color='green'/> Edit</Dropdown.Item>
             <Dropdown.Item onClick={() => this.deleteCategory(id)}> <Icon name='remove' color='red'/> Delete</Dropdown.Item>
-            <Dropdown.Item> <Icon name='hide' color='blue'/>View recipes</Dropdown.Item>
+            <Dropdown.Item onClick={() => this.props.redirectRecipes(id)} > <Icon name='hide' color='blue'/>View recipes</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
     )
@@ -44,7 +44,7 @@ class CategorySubMenu extends Component {
 
 CategorySubMenu.propTypes = {
   deleteCategory: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
 };
 
 
