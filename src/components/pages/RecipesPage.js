@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getUserRecipes } from '../../actions/recipes';
 import RecipeCard from '../../components/cards/recipeCard';
 import { Loader, Dimmer } from 'semantic-ui-react';
-// import CategoryModal from '../modals/CreateCategory';
+import RecipeModal from '../modals/createRecipes';
 
 class RecipesPage extends React.Component{
     state = {
@@ -21,17 +21,17 @@ class RecipesPage extends React.Component{
     render () {
         const { recipes } = this.props;
         const { loading } = this.state;
+        const category_id = this.props.match.params['category_id'];
         return(
             <div>
-                <div> {/* Recipe modal */ }</div>
-
+                <div><RecipeModal  category_id={category_id} /></div>
             <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
                         <Loader size='large'>Loading</Loader>
                     </Dimmer>}
                 { !!recipes && !(recipes[1][0] === 'Nothing Here yet') && recipes[1].map((recipe) => 
                 (
-                <RecipeCard recipe={recipe} key={recipe['id']}/>
+                <RecipeCard recipe={recipe} key={recipe['id']} category_id={category_id} recipe_id={recipe['id']}/>
                 )) }
             </div>
             </div>

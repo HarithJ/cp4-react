@@ -44,6 +44,21 @@ export default {
     headers: {Authorization: token}
     }).then(res => res.data),
 
+    postRecipe: (token, category_id, data) =>
+    axios({
+    method: 'post',
+    url: (`http://127.0.0.1:5000/v2/categories/${category_id}/recipes`),
+    data, 
+    headers: {Authorization: token}
+    }).then(res => res.data),
+
+    deleteRecipe: (token, category_id, recipe_id) =>
+    axios({
+    method: 'delete',
+    url: ( `http://127.0.0.1:5000/v2/categories/${category_id}/recipes/${recipe_id}`),
+    headers: {Authorization: token}
+    }).then(res => res.data),
+
   } 
 }
 

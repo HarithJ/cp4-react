@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-//import CategorySubMenu from '../menu/menu.js';
+import RecipeSubMenu from '../menu/recipeMenu';
 
 class RecipeCard extends React.Component {
     render() {
-        const { recipe } = this.props;
+        const { recipe, recipe_id, category_id } = this.props;
         return (
     <div className="ui card">
         <div className="extra header" style={{marginLeft: "70%" }}>
-        {/* <CategorySubMenu redirectRecipes= {this.props.redirectRecipes} id={category['id']} category={category}/> */}
+        {<RecipeSubMenu category_id={ category_id } recipe_id={ recipe_id } recipe={ recipe } />}
         </div>
         <div className="content">
             <div className="header">{recipe['name']}</div>
@@ -28,6 +28,5 @@ class RecipeCard extends React.Component {
 
 RecipeCard.propTypes = {
     recipe: PropTypes.object.isRequired,
-    //redirectRecipes: PropTypes.func.isRequired
 }
 export default RecipeCard;

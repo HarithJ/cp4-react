@@ -16,3 +16,16 @@ export const getUserRecipes = category_id => dispatch => api.user.getRecipes(loc
             dispatch(userLoggedOut())
         }
       });
+
+export const postRecipe = (category_id, data) => dispatch => api.user.postRecipe(localStorage.getItem('recipesJWT'), category_id, data)
+        .then(() => 
+        api.user.getRecipes(localStorage.getItem('recipesJWT'), category_id).then((recipes) => {
+            dispatch(allUserRecipes(recipes));
+        },));
+
+export const deleteRecipe = (category_id, recipe_id) => dispatch => api.user
+        .deleteRecipe(localStorage.getItem('recipesJWT'),category_id, recipe_id)
+        .then(() => 
+        api.user.getRecipes(localStorage.getItem('recipesJWT'), category_id).then((recipes) => {
+            dispatch(allUserRecipes(recipes));
+        },));
