@@ -4,7 +4,7 @@ import { Dropdown, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { deleteRecipe } from '../../actions/recipes';
 import { logout } from '../../actions/auth';
-//import CategoryEditModal from '../modals/editCategory';
+import RecipeEditModal from '../modals/editRecipes';
 
 
 class RecipeSubMenu extends Component {
@@ -26,12 +26,12 @@ class RecipeSubMenu extends Component {
    
   render() {
     // const { category } = this.props;
-    const { category_id, recipe_id } = this.props;
+    const { category_id, recipe_id , recipe} = this.props;
     return (
         <Dropdown  pointing='right' item text='More'>
           <Dropdown.Menu>
             <Dropdown.Item onClick={() => this.show('blurring')}> 
-            {/* <CategoryEditModal dimmer={this.state.dimmer} close={this.close} open= {this.state.open} category={category} id={id}/>  */}
+            <RecipeEditModal dimmer={this.state.dimmer} close={this.close} open= {this.state.open} recipe={recipe} category_id={ category_id} recipe_id={recipe_id} />
             <Icon name='edit' color='green'/> Edit</Dropdown.Item>
             <Dropdown.Item onClick={() => this.deleteRecipe(category_id, recipe_id)}> <Icon name='remove' color='red'/> Delete</Dropdown.Item>
           </Dropdown.Menu>

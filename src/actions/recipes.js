@@ -29,3 +29,10 @@ export const deleteRecipe = (category_id, recipe_id) => dispatch => api.user
         api.user.getRecipes(localStorage.getItem('recipesJWT'), category_id).then((recipes) => {
             dispatch(allUserRecipes(recipes));
         },));
+
+export const putRecipe = (category_id, recipe_id, data) => dispatch => api.user
+        .putRecipe(localStorage.getItem('recipesJWT'), category_id, recipe_id, data)
+        .then(() => 
+        api.user.getRecipes(localStorage.getItem('recipesJWT'), category_id).then((recipes) => {
+            dispatch(allUserRecipes(recipes));
+        },));

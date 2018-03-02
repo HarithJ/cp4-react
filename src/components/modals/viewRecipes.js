@@ -3,7 +3,7 @@ import { Header, Modal } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 
 
-class ViewCategoryModal extends React.Component {
+class ViewRecipeModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,19 +18,19 @@ class ViewCategoryModal extends React.Component {
 
   render() {
     const { dimmer, open } = this.props;
-    const { category } = this.props;
+    const { recipe } = this.props;
     return (
-      <Modal dimmer={dimmer} open={open} onClose={ this.close } size='tiny'>
-      <Modal.Header>{category['Recipe Category Name']}</Modal.Header>
+      <Modal dimmer={dimmer} open={open} onClose={ this.close } size='large'>
+      <Modal.Header>{recipe['name']}</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <Header>Details</Header> {category['Recipe Category Detail']}
+          <Header>Directions</Header> {recipe['Recipe']}
           <div>
             <br/>
-            <em>Created on</em>: {category['Date Created']}
+            <em>Created on</em>: {recipe['Date Created']}
             <div>
             <br/>
-            <em>Modified on</em>: {category['Date Created']}
+            <em>Modified on</em>: {recipe['Date Created']}
             </div>
           </div>
         </Modal.Description>
@@ -40,11 +40,11 @@ class ViewCategoryModal extends React.Component {
   }
 };
 
-ViewCategoryModal.propTypes = {
+ViewRecipeModal.propTypes = {
   open: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
-  category: PropTypes.object.isRequired
+  recipe: PropTypes.object.isRequired
 };
 
 
-export default ViewCategoryModal
+export default ViewRecipeModal

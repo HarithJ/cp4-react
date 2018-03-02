@@ -59,6 +59,14 @@ export default {
     headers: {Authorization: token}
     }).then(res => res.data),
 
+    putRecipe: (token, category_id, recipe_id, data) =>
+    axios({
+    method: 'put',
+    url: (`http://127.0.0.1:5000/v2/categories/${category_id}/recipes/${recipe_id}`),
+    data, 
+    headers: {Authorization: token}
+    }).then(res => res.data),
+
   } 
 }
 
