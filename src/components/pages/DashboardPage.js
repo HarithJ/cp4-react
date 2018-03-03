@@ -6,6 +6,7 @@ import CategoryCards from '../../components/cards/categoryCard';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import CategoryModal from '../modals/CreateCategory';
 import Pagination from '../pagination/pagination'
+import Search from '../search/searchStandard'
 
 class DashboardPage extends React.Component{
     state = {
@@ -28,7 +29,7 @@ class DashboardPage extends React.Component{
         return(
             <div>
                 <div><CategoryModal/></div>
-
+            <Search/>
             <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
                         <Loader size='large'>Loading</Loader>
