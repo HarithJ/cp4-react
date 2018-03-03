@@ -5,6 +5,7 @@ import { getUserCategories } from '../../actions/categories';
 import CategoryCards from '../../components/cards/categoryCard';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import CategoryModal from '../modals/CreateCategory';
+import Pagination from '../pagination/pagination'
 
 class DashboardPage extends React.Component{
     state = {
@@ -15,8 +16,7 @@ class DashboardPage extends React.Component{
 
     componentDidMount() {
         this.setState({ loading: true,})
-        const token = localStorage.getItem('recipesJWT');
-        this.getCategories(token);
+        this.getCategories();
         this.setState({ loading: false,})
     };
 
@@ -33,11 +33,15 @@ class DashboardPage extends React.Component{
                     { loading && <Dimmer active inverted>
                         <Loader size='large'>Loading</Loader>
                     </Dimmer>}
-                {!!categories && !categories[1]['message'] && categories[1].map((category) => 
+                {!!categories && !(categories[1][0] === 'Nothing here yet') && categories[1].map((category) => 
                 (
                 < CategoryCards redirectRecipes={ this.redirectRecipes } category={category} key={category['id']}/>
                 )) }
             </div>
+            <footer>
+                {!! categories && !(categories[1][0] === 'Nothing here yet')
+                 && <Pagination changePage={this.props.getUserCategories} paginationObject={ categories[0]}/>}
+            </footer>
             </div>
         );
     }

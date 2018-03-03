@@ -9,9 +9,9 @@ export default {
       headers: {Authorization: token}
     }),
     signup: user => axios.post('http://127.0.0.1:5000/v2/auth/register', user).then(res => res.data),
-    getCategories: token => axios({
+    getCategories: (token, page = 1) => axios({
       method: 'get',
-      url: ('http://127.0.0.1:5000/v2/categories'), 
+      url: (`http://127.0.0.1:5000/v2/categories?page=${page}`), 
       headers: {Authorization: token}
     }).then(res => res.data
     ),
@@ -38,9 +38,9 @@ export default {
     headers: {Authorization: token}
     }).then(res => res.data),
 
-    getRecipes: (token, category_id) => axios({
+    getRecipes: (token, category_id, page = 1) => axios({
     method: 'get',
-    url: (`http://127.0.0.1:5000/v2/categories/${category_id}/recipes`), 
+    url: (`http://127.0.0.1:5000/v2/categories/${category_id}/recipes?page=${page}`), 
     headers: {Authorization: token}
     }).then(res => res.data),
 

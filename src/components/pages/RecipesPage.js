@@ -5,6 +5,7 @@ import { getUserRecipes } from '../../actions/recipes';
 import RecipeCard from '../../components/cards/recipeCard';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import RecipeModal from '../modals/createRecipes';
+import Pagination from '../pagination/pagination'
 
 class RecipesPage extends React.Component{
     state = {
@@ -34,6 +35,10 @@ class RecipesPage extends React.Component{
                 <RecipeCard recipe={recipe} key={recipe['id']} category_id={category_id} recipe_id={recipe['id']}/>
                 )) }
             </div>
+            <footer>
+                {!! recipes && !(recipes[1][0] === 'Nothing Here yet')
+                 && <Pagination category_id={category_id} changePage={this.props.getUserRecipes } paginationObject={ recipes[0]}/>}
+            </footer>
             </div>
         );
     }

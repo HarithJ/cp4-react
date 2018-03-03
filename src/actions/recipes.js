@@ -7,7 +7,7 @@ export const allUserRecipes = recipes => ({
     recipes
 })
 
-export const getUserRecipes = category_id => dispatch => api.user.getRecipes(localStorage.getItem('recipesJWT'), category_id)
+export const getUserRecipes = (category_id, page = 1) => dispatch => api.user.getRecipes(localStorage.getItem('recipesJWT'), category_id, page)
         .then((recipes) => {
         dispatch(allUserRecipes(recipes));},)
         .catch((errors) => {
