@@ -17,22 +17,21 @@ class DashboardPage extends React.Component{
 
     componentDidMount() {
         this.setState({ loading: true,})
-        this.getCategories();
-        this.setState({ loading: false,})
+        this.getCategories().then(() => this.setState({ loading: false,}))
     };
 
     redirectRecipes = (id) => this.props.history.push(`category/${id}/recipes`)
 
     render () {
         const { categories } = this.props;
-        const { loading } = this.state;
+        const { loading } = this.state
         return(
             <div>
                 <div><CategoryModal/></div>
             { !! categories && !(categories[1][0] === 'Nothing here yet') && !(categories[1][0]['search']) && <Search/>}
             <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
-                        <Loader loading={loading} size='large'>Loading</Loader>
+                        <Loader loading={ loading } size='large'>Loading</Loader>
                     </Dimmer>}
                 {!!categories && !(categories[1][0] === 'Nothing here yet') && categories[1].map((category) => 
                 (

@@ -17,8 +17,7 @@ class RecipesPage extends React.Component{
     componentDidMount() {
         const id = this.props.match.params['category_id']
         this.setState({ loading: true,})
-        this.props.getUserRecipes(id)
-        this.setState({ loading: false,})
+        this.props.getUserRecipes(id).then(() => this.setState({ loading: false,}))
     };
 
     render () {
