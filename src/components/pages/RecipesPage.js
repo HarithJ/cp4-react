@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUserRecipes } from '../../actions/recipes';
 import RecipeCard from '../../components/cards/recipeCard';
-import { Loader, Dimmer } from 'semantic-ui-react';
+import { Loader, Dimmer, Button, Icon } from 'semantic-ui-react';
 import RecipeModal from '../modals/createRecipes';
 import Pagination from '../pagination/pagination'
+import Search from '../search/searchRecipes'
+
 
 class RecipesPage extends React.Component{
     state = {
@@ -26,9 +28,10 @@ class RecipesPage extends React.Component{
         return(
             <div>
                 <div><RecipeModal  category_id={category_id} /></div>
+                {!!recipes && !(recipes[1][0] === 'Nothing Here yet') && !(recipes[1][0]['search']) && <Search category_id={category_id}/>}
             <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
-                        <Loader size='large'>Loading</Loader>
+                        <Loader loading={loading} size='large'>Loading</Loader>
                     </Dimmer>}
                 { !!recipes && !(recipes[1][0] === 'Nothing Here yet') && recipes[1].map((recipe) => 
                 (
@@ -36,8 +39,12 @@ class RecipesPage extends React.Component{
                 )) }
             </div>
             <footer>
-                {!! recipes && !(recipes[1][0] === 'Nothing Here yet')
+                {!!recipes && !(recipes[1][0] === 'Nothing Here yet') && !(recipes[1][0]['search'])
                  && <Pagination category_id={category_id} changePage={this.props.getUserRecipes } paginationObject={ recipes[0]}/>}
+                 {!!recipes && !(recipes[1][0] === 'Nothing Here yet') && !!recipes[1][0]['search'] && 
+                <Button 
+                color='black'
+                onClick={() => this.props.getUserRecipes(category_id)}><Icon name='angle left'/>Back</Button>}
             </footer>
             </div>
         );

@@ -3,15 +3,15 @@ import { Dropdown, Form} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logout } from '../../actions/auth'
 import PropTypes from 'prop-types'
-import { retrieveSearchCategory } from '../../actions/search'
+import { retrieveSearchRecipe } from '../../actions/search'
 import api from '../../api'
 
-class SearchCategoryForm extends React.Component {
+class SearchRecipeForm extends React.Component {
   state = {
     query: '',
     loading: false,
     options: [],
-    categories: {}
+    recipes: {}
   }
   
   onSearchChange = (e, data) => {
@@ -24,29 +24,30 @@ class SearchCategoryForm extends React.Component {
 
   onChange = ( e, data) => {
     this.setState({query: data.value})
-    this.props.retrieveSearchCategory(this.state.categories[data.value])
+    this.props.retrieveSearchRecipe(this.state.recipes[data.value])
   }
   fetchOptions = () => {
     if(!this.state.query) return;
     this.setState({
       loading: true
     });
-    api.user.searchCategories(this.state.query)
-    .then(categories => {
-      if(!categories[0]['message']){
+    api.user.searchRecipes(this.props.category_id, this.state.query)
+    .then(recipes => {
+      if(!recipes[0]['message']){
         const options = [];
-        const categoriesHash = {};
-        categories.forEach(category => {
-        categoriesHash[category['id']] = category;
+        const recipesHash = {};
+        recipes.forEach(recipe => {
+        recipesHash[recipe['id']] = recipe;
         options.push({
-          key: category['id'],
-          value: category['id'],
-          text: category['Recipe Category Name']
+          key: recipe['id'],
+          value: recipe['id'],
+          text: recipe['name']
           });
         })
-        this.setState({loading: false, options, categories: categoriesHash})
+        console.log(this.state)
+        this.setState({loading: false, options, recipes: recipesHash})
       } else {
-        this.setState({ loading: false, not_found: categories[0]['message']+ " 😓"})
+        this.setState({ loading: false, not_found: recipes[0]['message']+ " 😓"})
       }
     })
     .catch((errors) => {
@@ -63,21 +64,21 @@ class SearchCategoryForm extends React.Component {
         selection
         fluid
         selectOnBlur={ false }
-        placeholder="Search categories by name"
+        placeholder="Search recipes by name"
         value={this.state.query}
         onSearchChange={ this.onSearchChange}
         options={ this.state.options }
         loading={ this.state.loading}
-        noResultsMessage={ this.state.not_found || "Searching for a category? ❤️ we'll help you find it 🤞" }
+        noResultsMessage={ this.state.not_found || "Searching for a recipe? ❤️ we'll help you find it 🤞" }
         onChange={ this.onChange }
         />
       </Form>
     )
   }
 }
-SearchCategoryForm.propTypes = {
+SearchRecipeForm.propTypes = {
   logout: PropTypes.func.isRequired,
-  retrieveSearchCategory: PropTypes.func.isRequired
+  retrieveSearchRecipe: PropTypes.func.isRequired
   
 }
-export default connect(null, { logout, retrieveSearchCategory })(SearchCategoryForm);
+export default connect(null, { logout, retrieveSearchRecipe })(SearchRecipeForm);

@@ -74,6 +74,13 @@ export default {
     headers: {Authorization: token}
     }).then(res => res.data),
 
+    searchRecipes: (category_id, value, page = 1) => axios({
+      method: 'get',
+      url: (`http://127.0.0.1:5000/v2/categories/${category_id}/recipes/search?q=${value}&page=${page}`), 
+      headers: {Authorization: localStorage.getItem('recipesJWT')}
+    }).then(res => res.data[1]
+    ),
+
   } 
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUserCategories } from '../../actions/categories';
 import CategoryCards from '../../components/cards/categoryCard';
-import { Loader, Dimmer } from 'semantic-ui-react';
+import { Loader, Dimmer, Button, Icon } from 'semantic-ui-react';
 import CategoryModal from '../modals/CreateCategory';
 import Pagination from '../pagination/pagination'
 import Search from '../search/searchStandard'
@@ -12,8 +12,8 @@ class DashboardPage extends React.Component{
     state = {
         loading: false,
     }
-    getCategories = (token) => 
-        this.props.getUserCategories(token);
+    getCategories = () => 
+        this.props.getUserCategories();
 
     componentDidMount() {
         this.setState({ loading: true,})
@@ -29,10 +29,10 @@ class DashboardPage extends React.Component{
         return(
             <div>
                 <div><CategoryModal/></div>
-            <Search/>
+            { !! categories && !(categories[1][0] === 'Nothing here yet') && !(categories[1][0]['search']) && <Search/>}
             <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
-                        <Loader size='large'>Loading</Loader>
+                        <Loader loading={loading} size='large'>Loading</Loader>
                     </Dimmer>}
                 {!!categories && !(categories[1][0] === 'Nothing here yet') && categories[1].map((category) => 
                 (
@@ -40,8 +40,12 @@ class DashboardPage extends React.Component{
                 )) }
             </div>
             <footer>
-                {!! categories && !(categories[1][0] === 'Nothing here yet')
+                {!! categories && !(categories[1][0] === 'Nothing here yet') && !(categories[1][0]['search'])
                  && <Pagination changePage={this.props.getUserCategories} paginationObject={ categories[0]}/>}
+                {!!categories && !(categories[1][0] === 'Nothing here yet') && !!categories[1][0]['search'] && 
+                <Button 
+                color='black'
+                onClick={() => this.getCategories()}><Icon name='angle left'/>Back</Button>}
             </footer>
             </div>
         );
