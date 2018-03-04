@@ -19,7 +19,7 @@ class SearchRecipeForm extends React.Component {
     this.setState({
       query: data.searchQuery
     });
-    this.timer = setTimeout(this.fetchOptions, 100);
+    this.timer = setTimeout(this.fetchOptions, 10);
   }
 
   onChange = ( e, data) => {
