@@ -31,7 +31,7 @@ class DashboardPage extends React.Component{
             { !! categories && !(categories[1][0] === 'Nothing here yet') && !(categories[1][0]['search']) && <Search/>}
             <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
-                        <Loader loading={ loading } size='large'>Loading</Loader>
+                        <Loader size='large'>Loading</Loader>
                     </Dimmer>}
                 {!!categories && !(categories[1][0] === 'Nothing here yet') && categories[1].map((category) => 
                 (

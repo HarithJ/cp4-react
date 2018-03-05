@@ -30,7 +30,7 @@ class RecipesPage extends React.Component{
                 {!!recipes && !(recipes[1][0] === 'Nothing Here yet') && !(recipes[1][0]['search']) && <Search category_id={category_id}/>}
             <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
-                        <Loader loading={loading} size='large'>Loading</Loader>
+                        <Loader size='large'>Loading</Loader>
                     </Dimmer>}
                 { !!recipes && !(recipes[1][0] === 'Nothing Here yet') && recipes[1].map((recipe) => 
                 (
