@@ -1,4 +1,5 @@
-import { USER_LOGGED_IN, USER_LOGGED_OUT, GET_USER_CATEGORIES, GET_USER_RECIPES, SEARCH_USER_CATEGORIES, SEARCH_USER_RECIPES } from "../types";
+import { USER_LOGGED_IN, USER_LOGGED_OUT, GET_USER_CATEGORIES, 
+        GET_USER_RECIPES, SEARCH_USER_CATEGORIES, SEARCH_USER_RECIPES } from "../types";
 
 export default function user(state = {}, action={}) {
     switch(action.type) {

@@ -17,7 +17,8 @@ rootReducer,
 );
 
 if (localStorage.recipesJWT) {
-  const user = { 'Access token': localStorage.recipesJWT };
+  const user = { 'Access token': localStorage.recipesJWT, 
+  'email': localStorage.email };
   store.dispatch(userLoggedIn(user));
 }
 

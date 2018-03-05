@@ -11,6 +11,8 @@ export const userLoggedOut = () => ({
   
   export const login = credentials => dispatch => api.user.login(credentials).then((user) => {
     localStorage.recipesJWT = user['Access token'];
+    localStorage.email = user['email'];
+    console.log(user)
     dispatch(userLoggedIn(user));
   },);
   
