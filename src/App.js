@@ -10,12 +10,13 @@ import UserRoute from './components/routes/UserRoute';
 import GuestRoute from './components/routes/GuestRoute';
 import PropTypes from 'prop-types';
 import TopNavigation from './components/navigation/TopNavigation'
+import './style.css';
 
 
 
 const App = ({ location, isAuthenticated }) => (
     <div>
-      {isAuthenticated && <TopNavigation/>}
+      { isAuthenticated && <TopNavigation/> }
       <div className="ui container">
         <Route location={ location }path="/" exact component={HomePage} />
         <GuestRoute location={ location } path='/login' exact component={LoginPage} />

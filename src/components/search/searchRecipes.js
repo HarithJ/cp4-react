@@ -57,7 +57,9 @@ class SearchRecipeForm extends React.Component {
   }
   render() {
     return (
-      <Form>
+      <div class="ui one column stackable center aligned page grid">
+        <div class="column twelve wide">
+        <Form>
         <Dropdown
         icon="search"
         search
@@ -72,7 +74,9 @@ class SearchRecipeForm extends React.Component {
         noResultsMessage={ this.state.not_found || "Searching for a recipe? ❤️ we'll help you find it 🤞" }
         onChange={ this.onChange }
         />
-      </Form>
+        </Form>      
+        </div>
+      </div>
     )
   }
 }

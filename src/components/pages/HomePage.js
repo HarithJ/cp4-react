@@ -3,17 +3,21 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from "../../actions/auth";
+import logo from '../../misc/logo.png'
+
 
 
 
 const HomePage = ({ isAuthenticated, logout, token}) => (
-        <div>
-            <h1>
-                Home Page
-            </h1>
-    {isAuthenticated ? (<button onClick={() => logout(token) }> Logout</button> ): 
-            (<div><Link to="/login">Login</Link> or <Link to="/signup">Sign Up</Link></div>)}
-        </div>
+    <div className='homepage'>
+        <h1> Home </h1>
+        {isAuthenticated ? (<button onClick={() => logout(token) }> Logout</button> ): 
+            (<div><Link to="/login">Login</Link> or <Link to="/signup">Sign Up</Link>
+                <div className="large-logo"><img src={logo} alt='logo'/></div>
+            </div>
+            )}
+    </div>
+
 );
 
 HomePage.propTypes = {

@@ -1,14 +1,18 @@
 import React from 'react';
-import { Menu, Dropdown, Image, Segment } from 'semantic-ui-react';
+import { Menu, Dropdown, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import gravatarUrl from 'gravatar-url';
 import PropTypes from 'prop-types'
 import { logout } from '../../actions/auth'
+import logo from '../../misc/logo.png'
 
 const TopNavigation = ({ user, logout }) => (
     <Menu  secondary pointing>
-    <Menu  secondary pointing className="ui container">
+    <Menu secondary pointing className="ui container" style={{width: '63%'}}>
+        <div className="logo">
+                <img src={logo} alt='logo'/>
+        </div>
         <Menu.Item as={Link} to='/dashboard' >Dashboard</Menu.Item>
         <Menu.Menu position='right'>
         <Dropdown trigger={<Image avatar src={ gravatarUrl(user.email, {d: 'mm'})}/>}>

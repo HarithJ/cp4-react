@@ -56,22 +56,26 @@ class SearchCategoryForm extends React.Component {
   }
   render() {
     return (
-      <Form>
-        <Dropdown
-        icon="search"
-        search
-        selection
-        fluid
-        selectOnBlur={ false }
-        placeholder="Search categories by name"
-        value={this.state.query}
-        onSearchChange={ this.onSearchChange}
-        options={ this.state.options }
-        loading={ this.state.loading}
-        noResultsMessage={ this.state.not_found || "Searching for a category? ❤️ we'll help you find it 🤞" }
-        onChange={ this.onChange }
-        />
-      </Form>
+      <div className="ui one column stackable center aligned page grid">
+          <div className="column twelve wide">
+          <Form>
+          <Dropdown
+          icon="search"
+          search
+          selection
+          fluid
+          selectOnBlur={ false }
+          placeholder="Search categories by name"
+          value={this.state.query}
+          onSearchChange={ this.onSearchChange}
+          options={ this.state.options }
+          loading={ this.state.loading}
+          noResultsMessage={ this.state.not_found || "Searching for a category? ❤️ we'll help you find it 🤞" }
+          onChange={ this.onChange }
+          />
+        </Form>
+          </div>
+        </div>
     )
   }
 }

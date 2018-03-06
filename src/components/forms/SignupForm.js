@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Message } from 'semantic-ui-react';
+import { Form, Button, Message, Segment } from 'semantic-ui-react';
 import isEmail from 'validator/lib/isEmail';
 import InlineError from '../messages/InlineError';
 
@@ -53,7 +53,11 @@ class SignupForm extends React.Component{
     render(){
         const { data, errors, loading } = this.state;
         return(
+            <div className="ui one column stackable center aligned page grid">
+                <div className="column twelve wide login">
+            <Segment>
             <Form onSubmit = {this.onSubmit} loading={loading}>
+            <h4 className="ui dividing header left">Sign Up</h4>
             { errors.message && <Message negative>
                 <Message.Header>Something went wrong</Message.Header>
                 <p>{errors.message}</p>
@@ -117,8 +121,11 @@ class SignupForm extends React.Component{
                     />
                     {errors['Last Name'] && <InlineError text={errors['Last Name']} />}
             </Form.Field>
-            <Button secondary>Sign Up</Button>
+            <Button floated='right' secondary>Sign Up</Button>
             </Form>
+            </Segment>
+            </div>
+            </div>
         );
     }
 }

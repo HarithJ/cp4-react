@@ -27,8 +27,9 @@ class DashboardPage extends React.Component{
         const { loading } = this.state
         return(
             <div>
-                <div><CategoryModal/></div>
-            { !! categories && !(categories[1][0] === 'Nothing here yet') && !(categories[1][0]['search']) && <Search/>}
+            <div><CategoryModal/></div>
+            { !! categories && !(categories[1][0] === 'Nothing here yet')
+             && !(categories[1][0]['search']) && <Search/>}
             <div className="ui link centered cards "> 
                     { loading && <Dimmer active inverted>
                         <Loader size='large'>Loading</Loader>

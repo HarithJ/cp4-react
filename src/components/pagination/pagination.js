@@ -14,18 +14,18 @@ class PaginationShorthand extends React.Component {
   render() {
     const { paginationObject } = this.props;
     return (
-      <div>
-      <Pagination
-      onPageChange={ this.changePage }
-      activePage={paginationObject['current page']}
-      ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
-      firstItem={{ content: <Icon name='angle double left' />, icon: true }}
-      lastItem={{ content: <Icon name='angle double right' />, icon: true }}
-      pointing
-      secondary
-      totalPages={paginationObject['total pages']}
-      />
-    </div>
+      <div className="ui one column stackable center aligned page grid">
+        <div className="column twelve wide">
+        <Pagination
+        onPageChange={ this.changePage }
+        activePage={paginationObject['current page']}
+        ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
+        firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+        lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+        totalPages={paginationObject['total pages']}
+        />
+        </div>
+      </div>
     )
   }
 }
