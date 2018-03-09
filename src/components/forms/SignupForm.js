@@ -121,7 +121,7 @@ class SignupForm extends React.Component{
                     />
                     {errors['Last Name'] && <InlineError text={errors['Last Name']} />}
             </Form.Field>
-            <Button floated='right' secondary>Sign Up</Button>
+            <Button floated='right' fluid secondary>Sign Up</Button>
             </Form>
             </Segment>
             </div>

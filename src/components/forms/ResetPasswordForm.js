@@ -4,7 +4,7 @@ import Validator from 'validator';
 import InlineError from "../messages/InlineError";
 import PropTypes from 'prop-types';
 
-class LoginForm extends React.Component {
+class ResetPasswordForm extends React.Component {
     state = {
         data: {
             email:'',
@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
                 <div className="column twelve wide login">
                 <Segment>
                 <Form floated='right' onSubmit={this.onSubmit} loading={loading}>
-                <h4 className="ui dividing header left">Login</h4>
+                <h4 className="ui dividing header left">Reset Password</h4>
 
                     { errors.message && <Message negative>
                     <Message.Header>Something went wrong</Message.Header>
@@ -73,7 +73,7 @@ class LoginForm extends React.Component {
                         />
                         {errors.password && <InlineError text={errors.password} />} 
                     </Form.Field>
-                    <Button floated='right' fluid  secondary>Login</Button>
+                    <Button floated='right' fluid negative secondary>Reset</Button>
                 </Form>
                 </Segment>
                 </div>
@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
     }
 }
 
-LoginForm.propTypes = {
+ResetPasswordForm.propTypes = {
     submit: PropTypes.func.isRequired
 };
-export default LoginForm;
+export default ResetPasswordForm;

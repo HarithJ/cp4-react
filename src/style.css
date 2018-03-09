@@ -36,3 +36,10 @@ html, body, #root {
 	margin: 2% 0 0 0;
 }
 
+.four_oh_four{
+	margin-top: 25%;
+}
+
+.four_oh_four_number{
+	color: red
+}

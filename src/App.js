@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
+import NotFound from './components/pages/NotFound';
 import LoginPage from './components/pages/LoginPage';
+import ResetPassword from './components/pages/ResetPassword';
 import DashboardPage from './components/pages/DashboardPage';
 import SignupPage from './components/pages/SignupPage';
 import RecipesPage from './components/pages/RecipesPage'
@@ -18,11 +20,15 @@ const App = ({ location, isAuthenticated }) => (
     <div>
       { isAuthenticated && <TopNavigation/> }
       <div className="ui container">
+      <Switch>
         <Route location={ location }path="/" exact component={HomePage} />
         <GuestRoute location={ location } path='/login' exact component={LoginPage} />
         <GuestRoute location={ location } path='/signup' exact component={SignupPage} />
         <UserRoute location={ location } path='/dashboard' exact component={ DashboardPage } />
         <UserRoute location={ location } path='/category/:category_id/recipes' exact component={ RecipesPage } />
+        <Route location={ location }path="/reset" exact component={ResetPassword} />
+        <Route location={ location } path='*' exact component={NotFound} />
+      </Switch>
       </div>
     </div>
     )
