@@ -8,6 +8,7 @@ export default {
       url: ('http://127.0.0.1:5000/v2/auth/logout'), 
       headers: {Authorization: token}
     }),
+    reset: resetData => axios.post('http://127.0.0.1:5000/v2/auth/reset-password', resetData).then(res => res.data),
     signup: user => axios.post('http://127.0.0.1:5000/v2/auth/register', user).then(res => res.data),
     getCategories: (token, page = 1) => axios({
       method: 'get',

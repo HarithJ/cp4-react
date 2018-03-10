@@ -1,17 +1,28 @@
 import React from 'react';
 import ResetPasswordForm from '../forms/ResetPasswordForm';
+import { Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { reset } from '../../actions/auth';
+import { reset } from '../../actions/auth';
 import logo from '../../misc/logo.png'
 
 class ResetPassword extends React.Component {
-    submit = data => {
-        return this.props.reset(data).then(() => this.props.history.push('login'));
+    submit = (data, reset=false) => {
+        console.log(reset)
+        if (reset) {
+            return this.props.reset(data).then(() => this.props.history.push('reset'));
+        } else {
+            return this.props.reset(data).then(() => this.props.history.push('login'));
+        }
     };
     render() {
         return(
             <div>
+                {!!this.props.message && <Message
+                    success
+                    header={this.props.message.message}
+                    content='Please check your mailbox'
+                />}
                 <h1>
                     Reset Password
                 </h1>
@@ -25,7 +36,14 @@ ResetPassword.propTypes = {
     history: PropTypes.shape({
         push: PropTypes.func.isRequired
     }),
-    reset: PropTypes.func.isRequired
+    reset: PropTypes.func.isRequired,
+    message: PropTypes.object,
 
 }
-export default connect(null, /*{ reset }*/)(ResetPassword);
+
+function mapStateToProps(state) {
+    return {
+        message : state.user.message
+    }
+} 
+export default connect(mapStateToProps, { reset })(ResetPassword);

@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from '../forms/LoginForm';
+import { Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
@@ -12,6 +13,11 @@ class LoginPage extends React.Component {
     render() {
         return(
             <div>
+                {!!this.props.message && <Message
+                    success
+                    header={this.props.message.message}
+                    content='You may now log-in with your email and password'
+                />}
                 <h1>
                     Login
                 </h1>
@@ -25,7 +31,14 @@ LoginPage.propTypes = {
     history: PropTypes.shape({
         push: PropTypes.func.isRequired
     }),
-    login: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired, 
+    message: PropTypes.object,
 
 }
-export default connect(null, { login})(LoginPage);
+
+function mapStateToProps(state) {
+    return {
+        message : state.user.message
+    }
+} 
+export default connect(mapStateToProps, { login})(LoginPage);

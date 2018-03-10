@@ -57,8 +57,8 @@ class SearchRecipeForm extends React.Component {
   }
   render() {
     return (
-      <div class="ui one column stackable center aligned page grid">
-        <div class="column twelve wide">
+      <div className="ui one column stackable center aligned page grid">
+        <div className="column twelve wide">
         <Form>
         <Dropdown
         icon="search"

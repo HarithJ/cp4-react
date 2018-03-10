@@ -14,7 +14,7 @@ class SearchCategoryForm extends React.Component {
     categories: {}
   }
   
-  onSearchChange = (e, data) => {
+  onSearchChange = (event, data) => {
     clearTimeout(this.timer);
     this.setState({
       query: data.searchQuery
@@ -22,7 +22,7 @@ class SearchCategoryForm extends React.Component {
     this.timer = setTimeout(this.fetchOptions, 10);
   }
 
-  onChange = ( e, data) => {
+  onChange = ( event, data) => {
     this.setState({query: data.value})
     this.props.retrieveSearchCategory(this.state.categories[data.value])
   }
