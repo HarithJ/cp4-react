@@ -58,15 +58,11 @@ use npm or yarn
 # Screenshots
 
 #### Login Page
-
+<img width="1440" alt="screen shot 2018-03-09 at 9 35 42 am" src="https://user-images.githubusercontent.com/32780926/37194211-378384f8-237e-11e8-9671-f0b7124d8c6b.png">
 
 #### Dashboard
-
-
-#### Recipes Page
-
-
-#### Reset Password
+<img width="1440" alt="screen shot 2018-03-09 at 9 36 06 am" src="https://user-images.githubusercontent.com/32780926/37194148-eeef2a26-237d-11e8-8570-02b11eb287cc.png">
+<img width="1440" alt="screen shot 2018-03-09 at 9 36 44 am" src="https://user-images.githubusercontent.com/32780926/37194188-1efd8d7a-237e-11e8-9b3f-eba6269da5a1.png">
 
 
 
