@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { retrieveSearchRecipe } from '../../actions/search'
 import api from '../../api'
 
-class SearchRecipeForm extends React.Component {
+export class SearchRecipeForm extends React.Component {
   state = {
     query: '',
     loading: false,

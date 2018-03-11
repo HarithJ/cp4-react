@@ -3,7 +3,7 @@ import { Header, Modal } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 
 
-class ViewCategoryModal extends React.Component {
+export class ViewCategoryModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

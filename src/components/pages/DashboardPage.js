@@ -8,7 +8,7 @@ import CategoryModal from '../modals/CreateCategory';
 import Pagination from '../pagination/pagination'
 import Search from '../search/searchStandard'
 
-class DashboardPage extends React.Component{
+export class DashboardPage extends React.Component{
     state = {
         loading: false,
     }

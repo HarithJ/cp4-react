@@ -6,7 +6,7 @@ import { signup } from '../../actions/users';
 import logo from '../../misc/logo.png'
 
 
-class SignupPage extends React.Component {
+export class SignupPage extends React.Component {
     submit = (data) => this.props.signup(data).then(() => this.props.history.push('/login'))
     render(){
         return(

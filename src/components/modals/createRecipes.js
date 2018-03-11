@@ -8,7 +8,7 @@ import { logout } from '../../actions/auth';
 
 
 
-class RecipeModal extends Component {
+export class RecipeModal extends Component {
   state = { 
     open: false,
     loading: false,

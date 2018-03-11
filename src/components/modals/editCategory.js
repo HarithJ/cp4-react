@@ -8,7 +8,7 @@ import { logout } from '../../actions/auth';
 
 
 
-class CategoryEditModal extends Component {
+export class CategoryEditModal extends Component {
     constructor(props) {
         super(props);
         this.state = {

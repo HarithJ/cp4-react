@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { retrieveSearchCategory } from '../../actions/search'
 import api from '../../api'
 
-class SearchCategoryForm extends React.Component {
+export class SearchCategoryForm extends React.Component {
   state = {
     query: '',
     loading: false,

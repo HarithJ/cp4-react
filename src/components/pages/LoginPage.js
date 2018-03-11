@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 import logo from '../../misc/logo.png'
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
     submit = data => {
         return this.props.login(data).then(() => this.props.history.push('dashboard'));
     };

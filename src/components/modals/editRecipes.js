@@ -8,7 +8,7 @@ import { logout } from '../../actions/auth';
 
 
 
-class RecipeEditModal extends Component {
+export class RecipeEditModal extends Component {
     constructor(props) {
         super(props);
         this.state = {

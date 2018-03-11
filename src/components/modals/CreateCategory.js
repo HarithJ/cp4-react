@@ -8,7 +8,7 @@ import { logout } from '../../actions/auth';
 
 
 
-class CategoryModal extends Component {
+export class CategoryModal extends Component {
   state = { 
     open: false,
     loading: false,

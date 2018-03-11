@@ -8,7 +8,7 @@ import logo from '../../misc/logo.png'
 
 
 
-const HomePage = ({ isAuthenticated, logout, token}) => (
+export const HomePage = ({ isAuthenticated, logout, token}) => (
     <div className='homepage'>
         <h1> Home </h1>
         {isAuthenticated ? (<button onClick={() => logout(token) }> Logout</button> ): 

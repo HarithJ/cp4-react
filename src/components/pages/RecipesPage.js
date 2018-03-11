@@ -9,7 +9,7 @@ import Pagination from '../pagination/pagination'
 import Search from '../search/searchRecipes'
 
 
-class RecipesPage extends React.Component{
+export class RecipesPage extends React.Component{
     state = {
         loading: false,
     }

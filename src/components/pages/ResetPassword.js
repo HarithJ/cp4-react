@@ -6,9 +6,8 @@ import PropTypes from 'prop-types';
 import { reset } from '../../actions/auth';
 import logo from '../../misc/logo.png'
 
-class ResetPassword extends React.Component {
+export class ResetPassword extends React.Component {
     submit = (data, reset=false) => {
-        console.log(reset)
         if (reset) {
             return this.props.reset(data).then(() => this.props.history.push('reset'));
         } else {
