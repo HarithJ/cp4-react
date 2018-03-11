@@ -29,7 +29,7 @@ class RecipeCard extends React.Component {
             </div>
         </div>  
         <div className="extra footer">
-        <i className="info icon"></i>Created: {recipe['Date Created'].slice(0,22)}..
+        <i className="info icon"></i>Created: {recipe["Date Created"].slice(0,22)}..
         </div>
     </div>
         )

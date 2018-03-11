@@ -121,8 +121,6 @@ CategoryEditModal.propTypes = {
     putCategory: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
     logout: PropTypes.func.isRequired
-
-
 };
 
 
