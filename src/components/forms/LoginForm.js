@@ -4,7 +4,7 @@ import Validator from 'validator';
 import InlineError from "../messages/InlineError";
 import PropTypes from 'prop-types';
 
-class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
     state = {
         data: {
             email:'',

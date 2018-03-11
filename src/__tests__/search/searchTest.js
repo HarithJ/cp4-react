@@ -43,8 +43,5 @@ describe('<SearchRecipes />', () => {
         const handleInputChangeSpy = jest.spyOn(enzymeWrapper.instance(), 'onSearchChange')
         enzymeWrapper.find('input').simulate('change',  { target: {value:'some value'}});
         expect(enzymeWrapper.state().query).toBe('some value')
-
-
-
     });
 })
