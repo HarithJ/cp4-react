@@ -4,7 +4,7 @@ node_js:
 
 script:
   - yarn add coveralls
-  - yarn test -- -u --coverage 
+  - yarn test --coverage 
 
 after_success:
   - coveralls < coverage/lcov.info
