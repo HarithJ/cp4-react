@@ -1,10 +1,10 @@
-import React from 'react'
-import { Dropdown, Form} from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import { logout } from '../../actions/auth'
-import PropTypes from 'prop-types'
-import { retrieveSearchCategory } from '../../actions/search'
-import api from '../../api'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Dropdown, Form } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { logout } from '../../actions/auth';
+import { retrieveSearchCategory } from '../../actions/search';
+import api from '../../api';
 
 export class SearchCategoryForm extends React.Component {
   state = {
@@ -13,75 +13,74 @@ export class SearchCategoryForm extends React.Component {
     options: [],
     categories: {}
   }
-  
+
   onSearchChange = (event, data) => {
     clearTimeout(this.timer);
-    this.setState({
-      query: data.searchQuery
-    });
+    this.setState({ query: data.searchQuery });
     this.timer = setTimeout(this.fetchOptions, 10);
   }
 
-  onChange = ( event, data) => {
-    this.setState({query: data.value})
-    this.props.retrieveSearchCategory(this.state.categories[data.value])
+  onChange = (event, data) => {
+    this.setState({ query: data.value });
+    this
+      .props
+      .retrieveSearchCategory(this.state.categories[data.value]);
   }
   fetchOptions = () => {
-    if(!this.state.query) return;
-    this.setState({
-      loading: true
-    });
-    api.user.searchCategories(this.state.query)
-    .then(categories => {
-      if(!categories[0]['message']){
-        const options = [];
-        const categoriesHash = {};
-        categories.forEach(category => {
-        categoriesHash[category['id']] = category;
-        options.push({
-          key: category['id'],
-          value: category['id'],
-          text: category['Recipe Category Name']
+    if (!this.state.query) return;
+    this.setState({ loading: true });
+    api
+      .user
+      .searchCategories(this.state.query)
+      .then((categories) => {
+        if (!categories[0].message) {
+          const options = [];
+          const categoriesHash = {};
+          categories.forEach((category) => {
+            categoriesHash[category.id] = category;
+            options.push({ key: category.id, value: category.id, text: category['Recipe Category Name'] });
           });
-        })
-        this.setState({loading: false, options, categories: categoriesHash})
-      } else {
-        this.setState({ loading: false, not_found: categories[0]['message']+ " 😓"})
-      }
-    })
-    .catch((errors) => {
-      if(errors.response.status  === 498 || errors.response.status  === 499) {
-          this.props.logout(localStorage.getItem('recipesJWT'))
-      }})
+          this.setState({ loading: false, options, categories: categoriesHash });
+        } else {
+          this.setState({ loading: false, not_found: `${categories[0].message} 😓` });
+        }
+      })
+      .catch((errors) => {
+        if (errors.response.status === 498 || errors.response.status === 499) {
+          this
+            .props
+            .logout(localStorage.getItem('recipesJWT'));
+        }
+      });
   }
   render() {
     return (
       <div className="ui one column stackable center aligned page grid">
-          <div className="column twelve wide">
+        <div className="column twelve wide">
           <Form>
-          <Dropdown
-          icon="search"
-          search
-          selection
-          fluid
-          selectOnBlur={ false }
-          placeholder="Search categories by name"
-          value={this.state.query}
-          onSearchChange={ this.onSearchChange}
-          options={ this.state.options }
-          loading={ this.state.loading}
-          noResultsMessage={ this.state.not_found || "Searching for a category? ❤️ we'll help you find it 🤞" }
-          onChange={ this.onChange }
-          />
-        </Form>
-          </div>
+            <Dropdown
+              icon="search"
+              search
+              selection
+              fluid
+              selectOnBlur={false}
+              placeholder="Search categories by name"
+              value={this.state.query}
+              onSearchChange={this.onSearchChange}
+              options={this.state.options}
+              loading={this.state.loading}
+              noResultsMessage={this.state.not_found || "Searching for a category? ❤️ we'll help you find it 🤞"}
+              onChange={this.onChange}
+            />
+          </Form>
         </div>
-    )
+      </div>
+    );
   }
 }
 SearchCategoryForm.propTypes = {
   logout: PropTypes.func.isRequired,
   retrieveSearchCategory: PropTypes.func.isRequired
-  
-}
+
+};
 export default connect(null, { logout, retrieveSearchCategory })(SearchCategoryForm);
