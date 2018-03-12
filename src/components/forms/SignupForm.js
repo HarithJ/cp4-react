@@ -5,7 +5,7 @@ import isEmail from 'validator/lib/isEmail';
 import InlineError from '../messages/InlineError';
 
 
-class SignupForm extends React.Component{
+export class SignupForm extends React.Component{
     state = {
         data: {
             

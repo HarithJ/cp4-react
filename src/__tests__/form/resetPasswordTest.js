@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
 import React from 'react';
-import { LoginForm } from '../../components/forms/LoginForm'
+import { ResetPasswordForm } from '../../components/forms/ResetPasswordForm'
 
 
 function setup(Func) {
@@ -20,23 +20,24 @@ function setup(Func) {
       enzymeWrapper
     }
   }
-describe('<LoginForm />', () => {
+describe('<ResetPasswordForm />', () => {
     it('should render itself and subcomponents and change state', () => {
-        const { enzymeWrapper } = setup(LoginForm)
-        expect(enzymeWrapper.find('input').length).toEqual(2);
+        const { enzymeWrapper } = setup(ResetPasswordForm)
+        expect(enzymeWrapper.find('input').length).toEqual(3);
         const handleInputChangeSpy = jest.spyOn(enzymeWrapper.instance(), 'onChange')
-        enzymeWrapper.find('input').at(1).simulate('change',  { target:{ name: "email",  value:'sn@stuff.com'}});
-        expect(enzymeWrapper.state().data.email).toBe('sn@stuff.com')
+        enzymeWrapper.find('input').at(1).simulate('change',  { target:{ name: "Secret word",  value:'sn@stuff.com'}});
+        expect(enzymeWrapper.state().data["Secret word"]).toBe('sn@stuff.com')
     });
 })
 
-describe("<LoginForm/>", () => {
+describe("<ResetPasswordForm/>", () => {
     it('should login a user', () => {
-        const { enzymeWrapper } = setup(LoginForm)
+        const { enzymeWrapper } = setup(ResetPasswordForm)
         enzymeWrapper.setState({
             data: {
                 email: 'sn@gmail.com',
                 password: 'password1234',
+                "Secret word": 'mypet'
             }
         });
         enzymeWrapper.find('Button').simulate('submit');
