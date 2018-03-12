@@ -82,12 +82,14 @@ export class RecipeModal extends Component {
 
     return (
       <div>
-        <Popup trigger={<Button onClick={this.show('blurring')}>Add</Button>}>
+        <div className='add'>
+        <Popup trigger={<Button onClick={this.show('blurring')}>Add Recipes</Button>}>
           <Popup.Header>Heads up!</Popup.Header>
           <Popup.Content>
             Create a new food recipes here!
           </Popup.Content>
         </Popup>
+        </div>
 
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Create a new recipe </Modal.Header>

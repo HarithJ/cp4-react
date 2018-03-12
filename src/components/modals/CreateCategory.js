@@ -83,7 +83,8 @@ export class CategoryModal extends Component {
 
     return (
       <div>
-        <Popup trigger={<Button onClick={this.show('blurring')}>Add</Button>}>
+        <Popup trigger={ 
+          <div className='add'><Button onClick={this.show('blurring')}>Add Category</Button></div> }>
           <Popup.Header>Heads up!</Popup.Header>
           <Popup.Content>
             Create a new food category here!

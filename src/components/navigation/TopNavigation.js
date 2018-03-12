@@ -32,6 +32,7 @@ const TopNavigation = ({ user, logout }) => (
         >
           <Dropdown.Menu>
             <Dropdown.Item onClick={() => logout()}>Logout</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/reset">Reset</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Menu.Menu>

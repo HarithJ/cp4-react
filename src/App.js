@@ -19,7 +19,7 @@ const App = ({location, isAuthenticated}) => (
     {isAuthenticated && <TopNavigation/>}
     <div className="ui container">
       <Switch>
-        <Route path="/" location={location} exact component={HomePage}/>
+        <GuestRoute path="/" location={location} exact component={HomePage}/>
         <GuestRoute location={location} path="/login" exact component={LoginPage}/>
         <GuestRoute location={location} path="/signup" exact component={SignupPage}/>
         <UserRoute

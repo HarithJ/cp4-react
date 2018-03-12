@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button, Message, Segment } from 'semantic-ui-react';
 import Validator from 'validator';
@@ -81,6 +82,13 @@ export class LoginForm extends React.Component {
                 </Form.Field>
                 <Button floated="right" fluid secondary>Login</Button>
               </Form>
+              <div className="ui one column stackable center aligned page grid">
+                <div className="column  wide login">
+                <Link to="/reset">Forgot Password? {' '}</Link>
+                or
+                <Link to="/signup">{' '}Sign Up</Link>
+                </div>
+              </div>
             </Segment>
           </div>
         </div>

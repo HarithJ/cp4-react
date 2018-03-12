@@ -44,7 +44,7 @@ class PaginationShorthand extends React.Component {
 
 PaginationShorthand.propTypes = {
   paginationObject: PropTypes.instanceOf(Object).isRequired,
-  categoryId: PropTypes.number,
+  categoryId: PropTypes.string,
   changePage: PropTypes.func.isRequired
 };
 PaginationShorthand.defaultProps = {

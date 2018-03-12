@@ -56,7 +56,7 @@ export class SearchRecipeForm extends React.Component {
   render() {
     return (
       <div className="ui one column stackable center aligned page grid">
-        <div className="column twelve wide">
+        <div className="column wide">
           <Form>
             <Dropdown
               icon="search"
@@ -81,7 +81,7 @@ export class SearchRecipeForm extends React.Component {
 SearchRecipeForm.propTypes = {
   logout: PropTypes.func.isRequired,
   retrieveSearchRecipe: PropTypes.func.isRequired,
-  categoryId: PropTypes.number.isRequired
+  categoryId: PropTypes.string.isRequired
 
 };
 export default connect(null, { logout, retrieveSearchRecipe })(SearchRecipeForm);

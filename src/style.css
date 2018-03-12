@@ -32,7 +32,7 @@ html, body, #root {
 .large-logo img{
     height:60px;
     width:60px;
-    float: left;
+    /* float: left; */
     margin: 2% 0 0 0;
 }
 
@@ -42,4 +42,10 @@ html, body, #root {
 
 .four_oh_four_number{
     color: red
+}
+
+.add {
+    margin-bottom: 1.5%;
+    margin-left: 16%;
+    width:14%;
 }

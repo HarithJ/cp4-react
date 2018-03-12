@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { Form, Button, Message, Segment } from 'semantic-ui-react';
 import isEmail from 'validator/lib/isEmail';
@@ -124,6 +125,11 @@ export class SignupForm extends React.Component {
               </Form.Field>
               <Button floated="right" fluid secondary>Sign Up</Button>
             </Form>
+            <div className="ui one column stackable center aligned page grid">
+                <div className="column  wide login">
+                Already have an account? <Link to="/login"> Login{' '}</Link>
+                </div>
+              </div>
           </Segment>
         </div>
       </div>

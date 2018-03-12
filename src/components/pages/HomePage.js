@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions/auth';
@@ -17,12 +18,17 @@ export const HomePage = ({ isAuthenticated, logout, token }) => (
         </button>
       )
       : (
-        <div>
-          <Link to="/login">Login</Link>
-          or
-          <Link to="/signup">Sign Up</Link>
-          <div className="large-logo"><img src={logo} alt="logo" /></div>
+        <div className="ui one column stackable center aligned page grid">
+          <div className="column twelve wide">
+            <Button size="massive" as={Link} to="/login">Login</Button>
+            {' '}
+            or
+            {' '}
+            <Button  size="massive" secondary as={Link} to="/signup">signup</Button>
+            <div className="large-logo"><img src={logo} alt="logo" /></div>
+          </div>
         </div>
+        
       )}
   </div>
 
