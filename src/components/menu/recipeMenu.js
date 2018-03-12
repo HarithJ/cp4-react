@@ -7,7 +7,7 @@ import { logout } from '../../actions/auth';
 import RecipeEditModal from '../modals/editRecipes';
 
 
-class RecipeSubMenu extends Component {
+export class RecipeSubMenu extends Component {
   state = { 
     open: false,
   }

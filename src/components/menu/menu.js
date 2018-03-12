@@ -7,7 +7,7 @@ import { logout } from '../../actions/auth';
 import CategoryEditModal from '../modals/editCategory';
 
 
-class CategorySubMenu extends Component {
+export class CategorySubMenu extends Component {
   state = { 
     open: false,
   }
