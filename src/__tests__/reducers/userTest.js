@@ -26,13 +26,14 @@ describe('Users reducers changes state on', () => {
   it('adds categories to state', () => {
     const results =
         {
-          categories: [{ category_one: { food: 'one' } }],
+          categories: [{ categoryOne: { food: 'one' } }],
           type: 'GET_USER_CATEGORIES',
         };
     expect(userReducer({ token: '123432323' }, results))
       .toEqual({
+        message: null,
         token: '123432323',
-        categories: [{ category_one: { food: 'one' } }],
+        categories: [{ categoryOne: { food: 'one' } }],
 
       });
   }),
@@ -44,11 +45,11 @@ describe('Users reducers changes state on', () => {
         };
     expect(userReducer({
       token: '123432323',
-      categories: [{ category_one: { food: 'one' } }],
+      categories: [{ categoryOne: { food: 'one' } }],
     }, results))
       .toEqual({
         token: '123432323',
-        categories: [{ category_one: { food: 'one' } }],
+        categories: [{ categoryOne: { food: 'one' } }],
         message: 'successfully updated',
 
       });
@@ -56,28 +57,29 @@ describe('Users reducers changes state on', () => {
   it('Gets user recipes', () => {
     const results =
         {
-          recipes: [{ recipe_one: { food: 'one' } }],
+          recipes: [{ recipeOne: { food: 'one' } }],
           type: 'GET_USER_RECIPES',
         };
     expect(userReducer({
       token: '123432323',
-      categories: [{ category_one: { food: 'one' } }],
+      categories: [{ categoryOne: { food: 'one' } }],
     }, results))
       .toEqual({
         token: '123432323',
-        categories: [{ category_one: { food: 'one' } }],
-        recipes: [{ recipe_one: { food: 'one' } }],
+        message: null,
+        categories: [{ categoryOne: { food: 'one' } }],
+        recipes: [{ recipeOne: { food: 'one' } }],
       });
   }),
   it('Searches categories', () => {
     const results =
         {
-          SearchObject: [{ category_two: { food: 'two' } }],
+          SearchObject: [{ categoryTwo: { food: 'two' } }],
           type: 'SEARCH_USER_CATEGORIES',
         };
     expect(userReducer({
       token: '123432323',
-      categories: [{ category_one: { food: 'one' } }],
+      categories: [{ categoryOne: { food: 'one' } }],
     }, results))
       .toEqual({
         token: '123432323',
@@ -88,20 +90,17 @@ describe('Users reducers changes state on', () => {
   it('Searches user recipes', () => {
     const results =
         {
-          SearchObject: [{ recipe_two: { food: 'two' } }],
+          SearchObject: [{ recipeTwo: { food: 'two' } }],
           type: 'SEARCH_USER_RECIPES',
         };
     expect(userReducer({
       token: '123432323',
-      categories: [{ category_one: { food: 'one' } }],
+      categories: [{ categoryOne: { food: 'one' } }],
     }, results))
       .toEqual({
         token: '123432323',
-        categories: [{ category_one: { food: 'one' } }],
+        categories: [{ categoryOne: { food: 'one' } }],
         recipes: results.SearchObject
       });
   });
 });
-
-
-import { reducer } from '';

@@ -17,7 +17,7 @@ describe('<LoginPage />', () => {
 
   const props = {
     login: jest.fn(),
-    message: {},
+    message: 'message',
     history: { push: jest.fn()},
 
 
