@@ -26,7 +26,7 @@ export class ResetPassword extends React.Component {
         <Message
           success
           header={this.props.message.message}
-          content="Please check your mailbox"
+          content='Please check your mailbox'
         />}
         <h1>
           Reset Password
