@@ -13,7 +13,7 @@ function setup(Func) {
     logout: jest.fn(),
     retrieveSearchCategory: jest.fn(),
     retrieveSearchRecipe: jest.fn(),
-    categoryId: 1,
+    categoryId: "1",
 
   };
 
