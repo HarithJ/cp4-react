@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "stable"
+  - "8.9.4"
 
 script:
-  - yarn add coveralls
+  - npm install coveralls
   - yarn test --coverage 
 
 after_success:
