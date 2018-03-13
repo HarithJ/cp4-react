@@ -34,7 +34,12 @@ export class RecipeModal extends Component {
       this
         .postRecipe(this.props.categoryId, this.state.data)
         .then(() => {
-          this.setState({ loading: false });
+          this.setState({ 
+            data: {
+              name: '',
+              recipe: ''
+            },
+            loading: false });
           this.close();
         })
         .catch((responseError) => {
@@ -57,6 +62,15 @@ export class RecipeModal extends Component {
       }
     });
   }
+  // Clear state on cancel
+  onCancel = () => {
+    this.setState({
+    data: {
+    name: '',
+    recipe: ''
+  }})
+  this.close()}
+  // validate input on submit
   validate = (data) => {
     const errors = {};
     if (!data.name) errors.name = "Can't be blank";
@@ -137,6 +151,7 @@ export class RecipeModal extends Component {
             </Form>
           </Modal.Content>
           <Modal.Actions>
+          <Button negative onClick={this.onCancel} loading={loading}>Cancel</Button>
             <Button color="black" onClick={this.onSubmit} loading={loading}>
               <Icon name="heart" />
               Create

@@ -43,7 +43,12 @@ export class CategoryModal extends Component {
       this
         .postCategory(this.state.data)
         .then(() => {
-          this.setState({ loading: false });
+          this.setState({ 
+            data: {
+              name: '',
+              recipe: ''
+            },
+            loading: false });
           this.close();
         })
         .catch((responseErrors) => {
@@ -64,6 +69,14 @@ export class CategoryModal extends Component {
     if (!data.detail) errors.detail = "Can't be blank";
     return errors;
   }
+  // Clear state on cancel
+  onCancel = () => {
+    this.setState({
+    data: {
+    name: '',
+    detail: ''
+  }})
+  this.close()}
   // shorthand for accessing dispatch
   postCategory = data => this
     .props
@@ -132,6 +145,7 @@ export class CategoryModal extends Component {
             </Form>
           </Modal.Content>
           <Modal.Actions>
+            <Button negative onClick={this.onCancel} loading={loading}>Cancel</Button>
             <Button color="black" onClick={this.onSubmit} loading={loading}>
               <Icon name="heart" />
               Create

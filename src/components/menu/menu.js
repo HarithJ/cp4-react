@@ -5,14 +5,18 @@ import PropTypes from 'prop-types';
 import { deleteCategory } from '../../actions/categories';
 import { logout } from '../../actions/auth';
 import UserCategoryEditModal from '../modals/editCategory';
+import ConfirmDelete from '../confirm/ConfirmDelete';
 
 export class CategorySubMenu extends Component {
   state = {
-    open: false
+    open: false,
+    confirm: false
   }
   // show or close modal
   show = dimmer => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
+  showConfirm = () => this.setState({ confirm: true})
+  closeConfirm = () => this.setState({ confirm: false})
   // call dispatch and delete category
   deleteCategory = (id) => {
     this
@@ -28,31 +32,39 @@ export class CategorySubMenu extends Component {
   }
 
   render() {
-    const { category } = this.props;
-    const { id } = this.props;
+    const { category, id } = this.props;
+    const { confirm } = this.state;
     return (
-      <Dropdown pointing="right" item text="More">
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={() => this.show('blurring')}>
-            <UserCategoryEditModal
-              dimmer={this.state.dimmer}
-              close={this.close}
-              open={this.state.open}
-              category={category}
-              id={id}
-            />
-            <Icon name="edit" color="green" />
-            Edit
-          </Dropdown.Item>
-          <Dropdown.Item onClick={() => this.deleteCategory(id)}>
-            <Icon name="remove" color="red" />
-            Delete
-          </Dropdown.Item>
-          <Dropdown.Item onClick={() => this.props.redirectRecipes(id)}>
-            <Icon name="hide" color="blue" />View recipes
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      <div>
+        <ConfirmDelete
+          deleteAction={this.deleteCategory} 
+          actionId={id} 
+          open={confirm}
+          cancelDelete={this.closeConfirm}
+        />
+        <Dropdown pointing="right" item text="More">
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => this.show('blurring')}>
+              <UserCategoryEditModal
+                dimmer={this.state.dimmer}
+                close={this.close}
+                open={this.state.open}
+                category={category}
+                id={id}
+              />
+              <Icon name="edit" color="green" />
+              Edit
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => this.showConfirm()}>
+              <Icon name="remove" color="red" />
+              Delete
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => this.props.redirectRecipes(id)}>
+              <Icon name="hide" color="blue" />View recipes
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
     );
   }
 }
