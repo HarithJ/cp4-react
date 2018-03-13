@@ -40,7 +40,7 @@ class RecipeCard extends React.Component {
           <div className="description">
             <p>{recipe
                 .Recipe
-                .slice(0, 50)}...
+                .slice(0, 22)}...
             </p>
           </div>
         </div>
