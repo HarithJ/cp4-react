@@ -1,8 +1,8 @@
 import React from 'react';
-import { Menu, Dropdown, Image } from 'semantic-ui-react';
+import { Menu, Dropdown } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import gravatarUrl from 'gravatar-url';
+import Avatar from 'react-avatar';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions/auth';
 import logo from '../../misc/logo.png';
@@ -24,10 +24,7 @@ const TopNavigation = ({ user, logout }) => (
       <Menu.Menu position="right" >
         <Dropdown
           trigger={
-            <Image
-              avatar
-              src={gravatarUrl(user.email, { d: 'mm' })}
-            />
+            <Avatar name={user.email} size={30} round />
         }
         >
           <Dropdown.Menu>

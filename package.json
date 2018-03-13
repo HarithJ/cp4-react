@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
-    "gravatar-url": "^2.0.0",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
+    "react-addons-shallow-compare": "^15.6.2",
+    "react-avatar": "^2.5.1",
     "react-dom": "^16.2.0",
     "react-emoji-render": "^0.4.4",
     "react-redux": "^5.0.6",
