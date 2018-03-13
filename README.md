@@ -1,3 +1,6 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/470e85756c864cd5b6c23d6b4e0ccf4e)](https://www.codacy.com/app/sir3n-sn/cp4-react?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sir3n-sn/cp4-react&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/sir3n-sn/cp4-react.svg?branch=master)](https://travis-ci.org/sir3n-sn/cp4-react)
+[![Coverage Status](https://coveralls.io/repos/github/sir3n-sn/cp4-react/badge.svg?branch=master)](https://coveralls.io/github/sir3n-sn/cp4-react?branch=master)
 This project was build on React with Redux framework.
 `React is a JavaScript library for building user interfaces. It is maintained by Facebook`
 `Redux is an open-source JavaScript library designed for managing application state`
