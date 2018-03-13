@@ -43,7 +43,7 @@ export class RecipeModal extends Component {
               .props
               .logout(localStorage.getItem('recipesJWT'));
           } else {
-            this.setState({ errors: errors.response.data, loading: false });
+            this.setState({ errors: responseError.response.data, loading: false });
           }
         });
     }

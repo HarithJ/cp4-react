@@ -41,7 +41,7 @@ class CategoryCard extends React.Component {
             <em>Brief description</em>
           </div>
           <div className="description">
-            <p>{category['Recipe Category Detail']}</p>
+            <p>{category['Recipe Category Detail'].slice(0, 22)}...</p>
           </div>
         </div>
         <div className="extra footer">

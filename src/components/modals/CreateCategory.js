@@ -47,12 +47,12 @@ export class CategoryModal extends Component {
           this.close();
         })
         .catch((responseErrors) => {
-          if (errors.response.status === 498 || responseErrors.response.status === 499) {
+          if (responseErrors.response.status === 498 || responseErrors.response.status === 499) {
             this
               .props
               .logout(localStorage.getItem('recipesJWT'));
           } else {
-            this.setState({ errors: errors.response.data, loading: false });
+            this.setState({ errors: responseErrors.response.data, loading: false });
           }
         });
     }

@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const apiUrl = 'http://api-iris.herokuapp.com';
+const apiUrl = 'http://127.0.0.1:5000';
 export default {
   user: {
     login: credentials => axios.post(`${apiUrl}/v2/auth/login`, credentials).then(res => res.data),
