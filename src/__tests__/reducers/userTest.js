@@ -26,7 +26,8 @@ describe('Users reducers changes state on', () => {
   it('adds categories to state', () => {
     const results =
         {
-          categories: [{ categoryOne: { food: 'one' } }],
+          categories: {data:[{ categoryOne: { food: 'one' } }]},
+          status: 200,
           type: 'GET_USER_CATEGORIES',
         };
     expect(userReducer({ token: '123432323' }, results))
@@ -57,7 +58,8 @@ describe('Users reducers changes state on', () => {
   it('Gets user recipes', () => {
     const results =
         {
-          recipes: [{ recipeOne: { food: 'one' } }],
+          recipes: {data: [{ recipeOne: { food: 'one' } }]},
+          status: 200,
           type: 'GET_USER_RECIPES',
         };
     expect(userReducer({

@@ -59,7 +59,7 @@ export class CategorySubMenu extends Component {
               <Icon name="remove" color="red" />
               Delete
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => this.props.redirectRecipes(id)}>
+            <Dropdown.Item onClick={() => this.props.redirectRecipes(id, category['Recipe Category Name'])}>
               <Icon name="hide" color="blue" />View recipes
             </Dropdown.Item>
           </Dropdown.Menu>

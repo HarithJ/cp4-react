@@ -48,3 +48,11 @@ html, body, #root {
     margin-left: 16%;
     width:14%;
 }
+.CategoryName {
+    width:100%;
+    text-align:center;
+    color:#000;
+    font-weight:27px;
+    text-transform:uppercase;
+    letter-spacing:8px;
+}

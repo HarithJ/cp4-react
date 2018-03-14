@@ -22,24 +22,24 @@ export class DashboardPage extends React.Component {
   getCategories = () => this
     .props
     .getUserCategories();
-  redirectRecipes = id => this
+  redirectRecipes = (id, categoryName) => this
     .props
     .history
-    .push(`category/${id}/recipes`)
+    .push(`category/${id}/recipes/${categoryName}`)
 
   render() {
-    const { categories } = this.props;
+    const { categories, status } = this.props;
     const { loading } = this.state;
     return (
       <div>
         <div><UserCategoryModal /></div>
-        {!!categories && !(categories[1][0] === 'Nothing here yet') && !(categories[1][0].search) && <Search />}
+        {!!categories && !(status === 222) && !(categories[1][0].search) && <Search />}
         <div className="ui link centered cards">
           {loading &&
           <Dimmer active inverted>
             <Loader size="large">Loading</Loader>
           </Dimmer>}
-          {!!categories && !(categories[1][0] === 'Nothing here yet') && categories[1].map(category => (
+          {!!categories && !(status === 222) && categories[1].map(category => (
             <CategoryCards
               redirectRecipes={this.redirectRecipes}
               category={category}
@@ -47,12 +47,12 @@ export class DashboardPage extends React.Component {
             />))}
         </div>
         <footer>
-          {!!categories && !(categories[1][0] === 'Nothing here yet') && !(categories[1][0].search) &&
+          {!!categories && !(status === 222) && !(categories[1][0].search) &&
           <Pagination
             changePage={this.props.getUserCategories}
             paginationObject={categories[0]}
           />}
-          {!!categories && !(categories[1][0] === 'Nothing here yet') && !!categories[1][0].search &&
+          {!!categories && !(status === 222) && !!categories[1][0].search &&
           <Button color="black" onClick={() => this.getCategories()}><Icon name="angle left" />Back</Button>}
         </footer>
       </div>
@@ -70,7 +70,9 @@ DashboardPage.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  return { categories: state.user.categories };
+  return { categories: state.user.categories,
+    status: state.user.status
+   };
 }
 
 export default connect(mapStateToProps, { getUserCategories })(DashboardPage);

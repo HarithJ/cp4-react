@@ -145,7 +145,8 @@ export class CategoryModal extends Component {
             </Form>
           </Modal.Content>
           <Modal.Actions>
-            <Button negative onClick={this.onCancel} loading={loading}>Cancel</Button>
+            {loading && <Button negative onClick={this.onCancel} disabled >Cancel</Button>}
+            {!loading && <Button negative onClick={this.onCancel} >Cancel</Button>}
             <Button color="black" onClick={this.onSubmit} loading={loading}>
               <Icon name="heart" />
               Create

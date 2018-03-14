@@ -23,19 +23,24 @@ export class RecipesPage extends React.Component {
   }
 
   render() {
-    const { recipes } = this.props;
+    const { recipes, status } = this.props;
     const { loading } = this.state;
-    const { categoryId } = this.props.match.params;
+    const { categoryId, categoryName } = this.props.match.params;
     return (
       <div>
         <div><UserRecipeModal categoryId={categoryId} /></div>
-        {!!recipes && !(recipes[1][0] === 'Nothing Here yet') && !(recipes[1][0].search) && <Search categoryId={categoryId} />}
+        {!!recipes && !(status === 222) && !(recipes[1][0].search) && <Search categoryId={categoryId} />}
+        <div className="ui one column stackable center aligned page grid">
+            <div className="column twelve wide">
+              <span className="CategoryName">{categoryName}</span>
+            </div>
+          </div>
         <div className="ui link centered cards ">
           {loading &&
           <Dimmer active inverted>
             <Loader size="large">Loading</Loader>
           </Dimmer>}
-          {!!recipes && !(recipes[1][0] === 'Nothing Here yet') && recipes[1].map(recipe => (<RecipeCard
+          {!!recipes && !(status === 222) && recipes[1].map(recipe => (<RecipeCard
             recipe={recipe}
             key={recipe.id}
             categoryId={categoryId}
@@ -43,12 +48,12 @@ export class RecipesPage extends React.Component {
           />))}
         </div>
         <footer>
-          {!!recipes && !(recipes[1][0] === 'Nothing Here yet') && !(recipes[1][0].search) && <Pagination
+          {!!recipes && !(status === 222) && !(recipes[1][0].search) && <Pagination
             categoryId={categoryId}
             changePage={this.props.getUserRecipes}
             paginationObject={recipes[0]}
           />}
-          {!!recipes && !(recipes[1][0] === 'Nothing Here yet') && !!recipes[1][0].search &&
+          {!!recipes && !(status === 222) && !!recipes[1][0].search &&
           <Button color="black" onClick={() => this.props.getUserRecipes(categoryId)}><Icon name="angle left" />Back</Button>}
         </footer>
       </div>
@@ -68,7 +73,8 @@ RecipesPage.defaultProps = {
   recipes: null
 };
 function mapStateToProps(state) {
-  return { recipes: state.user.recipes };
+  return { recipes: state.user.recipes,
+  status: state.user.status };
 }
 
 export default connect(mapStateToProps, { getUserRecipes })(RecipesPage);

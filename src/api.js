@@ -21,7 +21,7 @@ export default {
       headers: {
         Authorization: token
       }
-    }).then(res => res.data),
+    }).then(res => res),
     postCategory: (token, data) =>
       axios({
         method: 'post',
@@ -65,7 +65,7 @@ export default {
       headers: {
         Authorization: token
       }
-    }).then(res => res.data),
+    }).then(res => res),
 
     postRecipe: (token, categoryId, data) =>
       axios({

@@ -29,7 +29,7 @@ const App = ({location, isAuthenticated}) => (
           component={DashboardPage}/>
         <UserRoute
           location={location}
-          path="/category/:categoryId/recipes"
+          path="/category/:categoryId/recipes/:categoryName"
           exact
           component={RecipesPage}/>
         <Route path="/reset" location={location} exact component={ResetPassword}/>

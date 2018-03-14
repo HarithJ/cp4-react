@@ -17,7 +17,8 @@ export default function user(state = {}, action = {}) {
     case GET_USER_CATEGORIES:
       return {
         ...state,
-        categories: action.categories,
+        categories: action.categories.data,
+        status: action.categories.status,
         message: null
       };
     case USER_RESET_PASSWORD:
@@ -28,7 +29,8 @@ export default function user(state = {}, action = {}) {
     case GET_USER_RECIPES:
       return {
         ...state,
-        recipes: action.recipes,
+        recipes: action.recipes.data,
+        status: action.recipes.status,
         message: null
       };
     case SEARCH_USER_CATEGORIES:
